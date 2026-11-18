@@ -212,6 +212,58 @@
             color: transparent;
         }
 
+        /* Creative Hero Typographic Flourishes */
+        @keyframes heroTextShimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes heroWaveDraw {
+            from {
+                stroke-dashoffset: 240;
+                opacity: 0;
+            }
+            to {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+
+        .hero-shimmer-text {
+            background: linear-gradient(105deg, #7CF7FF 0%, #00E5FF 30%, #E0AAFF 55%, #00E5FF 80%, #7CF7FF 100%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: heroTextShimmer 7s ease-in-out infinite;
+            filter: drop-shadow(0 4px 20px rgba(0, 229, 255, 0.28));
+        }
+
+        .hero-wave-underline {
+            stroke-dasharray: 240;
+            stroke-dashoffset: 0;
+            animation: heroWaveDraw 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+        }
+
+        .hero-pillar-chip {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(183, 148, 244, 0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 8px 24px rgba(5, 10, 31, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .hero-pillar-chip:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 229, 255, 0.55);
+            box-shadow: 0 10px 28px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
         /* Smooth Initial Page-Load Choreography for Header & Hero */
         @keyframes headerGlideIn {
             from {
@@ -333,7 +385,9 @@
             .animate-hero-ambient,
             .animate-hero-profile,
             .animate-hero-up,
-            .animate-hero-wave {
+            .animate-hero-wave,
+            .hero-shimmer-text,
+            .hero-wave-underline {
                 animation: none !important;
                 opacity: 1 !important;
                 transform: none !important;
@@ -591,129 +645,295 @@
             </svg>
         </div>
 
-        <!-- Layer 5: Hero Typography & CTAs (Exact Reference Hierarchy) -->
-        <div class="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-20 w-full">
-            <div class="max-w-xl lg:max-w-[36rem]">
-                
-                <!-- Stacked Editorial Headline -->
-                <h1 class="font-serif leading-[1.06] tracking-[-0.01em] drop-shadow-[0_6px_22px_rgba(4,8,28,0.65)] animate-hero-up" style="--delay: 0.16s;">
-                    <span class="block text-5xl sm:text-6xl lg:text-[4.65rem] font-medium text-white">Wiegand’s</span>
-                    <span class="block text-5xl sm:text-6xl lg:text-[4.65rem] font-medium text-white mt-0.5">Mental Health</span>
-                    <span class="block text-5xl sm:text-6xl lg:text-[4.85rem] font-medium italic hero-headline-cyan mt-0.5 pb-1">Life Coaching</span>
+        <!-- Layer 5: Foreground Editorial Typography & CTAs -->
+        <div class="relative z-10 max-w-[92rem] w-full mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div class="max-w-2xl lg:max-w-[42rem]">
+
+                <!-- Creative Layered Hero Headline -->
+                <h1 class="animate-hero-up drop-shadow-[0_4px_24px_rgba(5,10,31,0.75)]" style="--delay: 0.18s;">
+                    <!-- Line 1: Emotional Anchor with Animated Hand-Drawn Wave Accent -->
+                    <span class="block font-serif text-[2.75rem] sm:text-[3.75rem] lg:text-[4.35rem] font-medium leading-[1.08] tracking-tight text-white">
+                        No one fights
+                        <span class="relative inline-block italic font-normal text-[#E9D5FF]">
+                            alone.
+                            <svg class="absolute -bottom-2 left-0 w-full h-3 overflow-visible pointer-events-none" viewBox="0 0 180 14" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="heroWaveStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#00E5FF" />
+                                        <stop offset="55%" stop-color="#B794F4" />
+                                        <stop offset="100%" stop-color="#FF8A5B" />
+                                    </linearGradient>
+                                </defs>
+                                <path class="hero-wave-underline" d="M2 10 C 42 2, 118 14, 178 4" stroke="url(#heroWaveStroke)" stroke-width="2.6" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                    </span>
+
+                    <!-- Line 2: Luminous Pathway & Editorial Pillar Chips -->
+                    <span class="mt-6 mb-4 pl-4 sm:pl-5 border-l-2 border-turquoise/70 flex flex-wrap items-center gap-2.5 sm:gap-3.5">
+                        <span class="hero-pillar-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-serif text-lg sm:text-2xl text-white/95 tracking-wide">
+                            <span class="w-1.5 h-1.5 rounded-full bg-turquoise shadow-[0_0_10px_#00E5FF]"></span>
+                            Find clarity.
+                        </span>
+                        <i class="ph-fill ph-sparkle text-lavender/80 text-xs sm:text-sm" aria-hidden="true"></i>
+                        <span class="hero-pillar-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-serif text-lg sm:text-2xl text-white/95 tracking-wide">
+                            <span class="w-1.5 h-1.5 rounded-full bg-lavender shadow-[0_0_10px_#B794F4]"></span>
+                            Build resilience.
+                        </span>
+                    </span>
+
+                    <!-- Line 3: Shimmering Coastal Callout -->
+                    <span class="block font-serif italic font-semibold text-[2.95rem] sm:text-[4.1rem] lg:text-[4.8rem] leading-[1.06] tracking-tight hero-shimmer-text mt-2">
+                        Create positive change.
+                    </span>
                 </h1>
 
-                <!-- Ornamental Ribbon Divider -->
-                <div class="flex items-center gap-4 my-5 max-w-[29rem] animate-hero-up" style="--delay: 0.32s;">
+                <!-- Ornamental Awareness Ribbon Divider -->
+                <div class="flex items-center gap-4 my-7 max-w-md animate-hero-up" style="--delay: 0.34s;">
                     <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/45 to-white/60"></div>
-                    <!-- Small Teal & Purple Awareness Ribbon -->
-                    <svg class="w-5 h-7 flex-shrink-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" viewBox="0 0 64 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <svg class="w-5 h-7 flex-shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" viewBox="0 0 64 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M32 6 C14 6, 8 22, 16 38 L46 88 L56 76 L27 32 C22 23, 25 16, 32 16 Z" fill="#22E5F2" />
                         <path d="M32 6 C50 6, 56 22, 48 38 L18 88 L8 76 L37 32 C42 23, 39 16, 32 16 Z" fill="#B794F4" />
                     </svg>
                     <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent via-white/45 to-white/60"></div>
                 </div>
 
-                <!-- Tagline & Supporting Subheadline -->
-                <div class="max-w-[29rem] text-center sm:text-left lg:text-center animate-hero-up" style="--delay: 0.44s;">
-                    <p class="font-serif italic text-2xl sm:text-[1.75rem] text-white tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] mb-3">
-                        No one fights alone.
-                    </p>
-                    <p class="font-sans text-[15px] sm:text-[17px] text-white/95 font-normal tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-9">
-                        Find clarity. Build resilience. Create positive change.
-                    </p>
-                </div>
+                <!-- Supporting Brand Line -->
+                <p class="font-serif text-xl sm:text-2xl text-white/90 tracking-wide mb-9 drop-shadow-[0_2px_12px_rgba(5,10,31,0.75)] animate-hero-up" style="--delay: 0.44s;">
+                    Wiegand’s Mental Health <span class="italic text-turquoise">Life Coaching</span>
+                </p>
 
-                <!-- Primary & Secondary CTA Row -->
-                <div class="flex flex-wrap items-center gap-6 sm:gap-7 animate-hero-up" style="--delay: 0.58s;">
-                    <a href="#contact" class="btn-turquoise text-white px-7 sm:px-8 py-3.5 rounded-full text-[16px] font-serif font-medium tracking-wide inline-flex items-center gap-3">
+                <!-- Hero CTAs: Free Consultation & Watch My Story -->
+                <div class="flex flex-wrap items-center gap-5 sm:gap-7 animate-hero-up" style="--delay: 0.56s;">
+                    <a href="#contact" class="btn-turquoise text-white px-8 py-4 rounded-full text-base sm:text-lg font-serif font-medium tracking-wide inline-flex items-center gap-3">
                         <i class="ph ph-calendar-blank text-xl"></i>
                         <span>Free Consultation</span>
                         <i class="ph ph-arrow-right text-base opacity-90"></i>
                     </a>
 
-                    <span class="hidden sm:inline-block h-8 w-[1px] bg-white/25"></span>
+                    <span class="hidden sm:inline-block h-8 w-[1px] bg-white/25" aria-hidden="true"></span>
 
                     <a href="#meet-michael" class="group inline-flex items-center gap-3.5 text-white hover:text-turquoise transition-colors">
-                        <span class="w-11 h-11 rounded-full border border-white/75 group-hover:border-turquoise bg-midnight/30 backdrop-blur-sm flex items-center justify-center transition-all group-hover:scale-105 shadow-lg">
-                            <i class="ph-fill ph-play text-sm ml-0.5"></i>
+                        <span class="w-12 h-12 rounded-full border border-white/65 bg-white/5 backdrop-blur-sm flex items-center justify-center group-hover:border-turquoise group-hover:bg-turquoise/15 group-hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.35)]">
+                            <i class="ph-fill ph-play text-base ml-0.5 text-white group-hover:text-turquoise transition-colors"></i>
                         </span>
-                        <span class="font-serif text-[16px] tracking-wide drop-shadow-md">Watch My Story</span>
+                        <span class="font-serif text-base sm:text-lg tracking-wide drop-shadow-[0_2px_8px_rgba(5,10,31,0.8)]">
+                            Watch My Story
+                        </span>
                     </a>
                 </div>
 
             </div>
         </div>
 
-        <!-- Layer 6: Bottom Glowing Sweeping Wave Transition into Midnight Navy -->
-        <div class="absolute bottom-0 left-0 right-0 z-10 pointer-events-none leading-none animate-hero-wave">
-            <svg viewBox="0 0 1440 165" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-[90px] sm:h-[125px] lg:h-[155px]" preserveAspectRatio="none">
+        <!-- Layer 6: Sweeping Cyan-to-Purple Luminous Coastal Wave Transition -->
+        <div class="absolute bottom-0 left-0 right-0 z-[5] pointer-events-none leading-none animate-hero-wave">
+            <svg viewBox="0 0 1440 170" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-24 sm:h-32 lg:h-40 block" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
-                    <linearGradient id="waveRimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="heroWaveGlow" x1="0%" y1="50%" x2="100%" y2="50%">
                         <stop offset="0%" stop-color="#00E5FF" />
-                        <stop offset="35%" stop-color="#0EA5E9" />
-                        <stop offset="68%" stop-color="#A855F7" />
-                        <stop offset="85%" stop-color="#D946EF" />
-                        <stop offset="100%" stop-color="#38BDF8" />
+                        <stop offset="45%" stop-color="#38BDF8" />
+                        <stop offset="78%" stop-color="#C084FC" />
+                        <stop offset="100%" stop-color="#00E5FF" />
                     </linearGradient>
-                    <linearGradient id="waveBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#081A3D" />
-                        <stop offset="45%" stop-color="#06102B" />
-                        <stop offset="100%" stop-color="#050A1F" />
+                    <linearGradient id="heroWaveBackFill" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#0B224D" stop-opacity="0.7" />
+                        <stop offset="55%" stop-color="#1E1B4B" stop-opacity="0.75" />
+                        <stop offset="100%" stop-color="#0A183B" stop-opacity="0.85" />
                     </linearGradient>
                 </defs>
-                <!-- Subtle Upper Translucent Wave Ribbon -->
-                <path d="M0 105 C260 40, 560 155, 920 120 C1180 95, 1320 65, 1440 82 L1440 165 L0 165 Z" fill="rgba(16, 38, 84, 0.55)" />
-                <path d="M0 105 C260 40, 560 155, 920 120 C1180 95, 1320 65, 1440 82" stroke="url(#waveRimGrad)" stroke-width="2.5" opacity="0.65" />
-                <!-- Main Foreground Sweeping Wave -->
-                <path d="M0 112 C210 18, 490 142, 850 132 C1100 124, 1270 72, 1440 108 L1440 165 L0 165 Z" fill="url(#waveBodyGrad)" />
-                <!-- Luminous Cyan-to-Purple Crest Line -->
-                <path d="M0 112 C210 18, 490 142, 850 132 C1100 124, 1270 72, 1440 108" stroke="url(#waveRimGrad)" stroke-width="4" />
+                <!-- Soft Secondary Back Wave -->
+                <path d="M0 105 C 260 28, 560 140, 880 120 C 1140 104, 1300 52, 1440 76 L 1440 170 L 0 170 Z" fill="url(#heroWaveBackFill)" />
+                <!-- Main Foreground Midnight Wave -->
+                <path d="M0 122 C 230 34, 540 146, 860 132 C 1120 120, 1280 68, 1440 94 L 1440 170 L 0 170 Z" fill="#050A1F" />
+                <!-- Luminous Cyan-to-Lavender Crest Line -->
+                <path d="M0 122 C 230 34, 540 146, 860 132 C 1120 120, 1280 68, 1440 94" stroke="url(#heroWaveGlow)" stroke-width="3.5" stroke-linecap="round" />
             </svg>
         </div>
     </section>
 
-    <!-- MEET MICHAEL SECTION -->
-    <section id="meet-michael" class="bg-midnight py-32 relative z-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="flex flex-col lg:flex-row gap-20 items-center">
+    <!-- 1. SUPPORT & GUIDANCE (RESOURCES) SECTION -->
+    <section id="resources" class="py-24 lg:py-32 bg-midnight relative z-10 overflow-hidden">
+        <!-- Subtle Illustrative Background Accents -->
+        <div class="absolute top-12 right-0 w-[420px] h-[420px] bg-turquoise/[0.04] rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[380px] h-[380px] bg-lavender/[0.05] rounded-full blur-[120px] pointer-events-none"></div>
+        <svg class="absolute inset-x-0 bottom-0 w-full h-40 opacity-20 pointer-events-none" viewBox="0 0 1440 160" fill="none" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 110 C 320 40, 620 155, 960 95 C 1180 56, 1320 82, 1440 68" stroke="url(#resourcesBgWave)" stroke-width="1.5" stroke-dasharray="5 9" />
+            <defs>
+                <linearGradient id="resourcesBgWave" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00E5FF" stop-opacity="0" />
+                    <stop offset="35%" stop-color="#00E5FF" stop-opacity="0.7" />
+                    <stop offset="70%" stop-color="#B794F4" stop-opacity="0.7" />
+                    <stop offset="100%" stop-color="#FF8A5B" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
                 
-                <!-- Photographic Composition -->
-                <div class="w-full lg:w-1/2 relative reveal">
-                    <div class="aspect-[4/5] rounded-t-full rounded-b-2xl overflow-hidden img-editorial border border-white/10 relative z-10">
-                        <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/KMM/refs/heads/main/0f8dc7f5-7595-432e-8e9c-4844a5cca58b.webp" alt="Michael Wiegand - Professional Life Coach" class="w-full h-full object-cover">
+                <!-- Left Editorial Heading & Custom Coastal Illustration -->
+                <div class="lg:col-span-5 reveal">
+                    <span class="text-xs font-sans font-semibold tracking-[0.26em] uppercase text-turquoise/90 block mb-4">Resources &amp; Tools</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-medium text-white mb-6 leading-tight">Support &amp; Guidance</h2>
+                    <div class="h-[1px] w-24 bg-gradient-to-r from-turquoise/75 via-lavender/50 to-transparent mb-6"></div>
+                    <p class="text-gray-300 font-light text-base sm:text-lg leading-relaxed max-w-md mb-10">
+                        Thoughtful topics and supportive materials focused on awareness, reflection, and navigating life's more difficult seasons.
+                    </p>
+
+                    <!-- Bespoke Illustrative Coastal Horizon & Guiding Light Artwork -->
+                    <div class="relative max-w-sm lg:max-w-md mx-auto lg:mx-0">
+                        <svg viewBox="0 0 420 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto drop-shadow-[0_12px_32px_rgba(0,229,255,0.08)]" aria-hidden="true">
+                            <defs>
+                                <radialGradient id="resHorizonGlow" cx="50%" cy="56%" r="48%">
+                                    <stop offset="0%" stop-color="#FF8A5B" stop-opacity="0.45" />
+                                    <stop offset="45%" stop-color="#B794F4" stop-opacity="0.24" />
+                                    <stop offset="100%" stop-color="#050A1F" stop-opacity="0" />
+                                </radialGradient>
+                                <linearGradient id="resArchLine" x1="40" y1="190" x2="380" y2="60" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.15" />
+                                    <stop offset="50%" stop-color="#00E5FF" stop-opacity="0.75" />
+                                    <stop offset="100%" stop-color="#B794F4" stop-opacity="0.2" />
+                                </linearGradient>
+                                <linearGradient id="resWaveOne" x1="20" y1="170" x2="400" y2="170" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.05" />
+                                    <stop offset="45%" stop-color="#00E5FF" stop-opacity="0.85" />
+                                    <stop offset="85%" stop-color="#B794F4" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="#FF8A5B" stop-opacity="0.1" />
+                                </linearGradient>
+                                <linearGradient id="resWaveTwo" x1="40" y1="200" x2="380" y2="200" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#B794F4" stop-opacity="0.08" />
+                                    <stop offset="50%" stop-color="#FF8A5B" stop-opacity="0.65" />
+                                    <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.08" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Soft Sunset Horizon Aura -->
+                            <ellipse cx="210" cy="130" rx="165" ry="95" fill="url(#resHorizonGlow)" />
+
+                            <!-- Delicate Celestial Arch -->
+                            <path d="M 48 164 A 162 142 0 0 1 372 164" stroke="url(#resArchLine)" stroke-width="1.25" stroke-dasharray="4 7" />
+                            <path d="M 88 164 A 122 106 0 0 1 332 164" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+
+                            <!-- Rising Warm Horizon Sun -->
+                            <circle cx="210" cy="144" r="34" fill="rgba(255, 198, 130, 0.14)" stroke="rgba(255, 198, 130, 0.45)" stroke-width="1.2" />
+                            <circle cx="210" cy="144" r="18" fill="rgba(255, 224, 178, 0.25)" />
+                            <circle cx="210" cy="144" r="5" fill="#FFF7E6" />
+
+                            <!-- Delicate Guiding Stars -->
+                            <path d="M118 68 L120.5 74.5 L127 77 L120.5 79.5 L118 86 L115.5 79.5 L109 77 L115.5 74.5 Z" fill="#00E5FF" opacity="0.85" />
+                            <path d="M306 58 L308 63 L313 65 L308 67 L306 72 L304 67 L299 65 L304 63 Z" fill="#B794F4" opacity="0.85" />
+                            <circle cx="210" cy="36" r="2.2" fill="#FFFFFF" opacity="0.7" />
+                            <circle cx="154" cy="96" r="1.5" fill="#7CF7FF" opacity="0.6" />
+                            <circle cx="268" cy="92" r="1.8" fill="#FF8A5B" opacity="0.7" />
+
+                            <!-- Layered Flowing Ocean Waves -->
+                            <path d="M 18 166 C 85 144, 145 180, 210 162 C 275 144, 335 178, 402 158" stroke="url(#resWaveOne)" stroke-width="2.2" stroke-linecap="round" />
+                            <path d="M 38 190 C 110 172, 165 204, 232 186 C 292 170, 342 196, 386 184" stroke="url(#resWaveTwo)" stroke-width="1.6" stroke-linecap="round" />
+                            <path d="M 76 212 C 138 202, 188 220, 248 210 C 296 202, 326 214, 352 208" stroke="rgba(0, 229, 255, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                        </svg>
                     </div>
-                    <!-- Organic background accent -->
-                    <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-turquoise/5 rounded-full blur-3xl z-0"></div>
                 </div>
 
-                <!-- Content -->
-                <div class="w-full lg:w-1/2 reveal" style="transition-delay: 200ms;">
-                    <h2 class="font-serif text-4xl lg:text-6xl font-medium mb-4 text-white">Michael Wiegand</h2>
-                    <p class="text-turquoise text-xl font-light italic mb-10 pb-6 border-b border-white/10 inline-block w-full">Professional Life Coach</p>
-                    
-                    <div class="space-y-6 text-gray-300 font-light text-lg leading-relaxed mb-10">
-                        <p>
-                            Dedicated to providing a supportive, understanding environment to help you overcome personal obstacles. 
-                            My approach focuses on empathy, resilience, and identifying actionable paths forward.
-                        </p>
-                        <p>
-                            I am a life coach, not a therapist. I am here to help you establish your goals, regain focus, and build the confidence necessary to navigate your unique journey.
-                        </p>
-                    </div>
+                <!-- Right Illustrative Editorial Topics List -->
+                <div class="lg:col-span-7 reveal" style="transition-delay: 150ms;">
+                    <ul class="divide-y divide-white/10 border-y border-white/10">
+                        
+                        <!-- Topic 1: Suicide Awareness -->
+                        <li class="py-6 sm:py-7 flex items-start sm:items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-turquoise/15 via-navy/80 to-lavender/15 border border-turquoise/35 shadow-[0_0_24px_rgba(0,229,255,0.12)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 group-hover:border-turquoise/60 transition-all duration-300">
+                                <!-- Custom Teal & Purple Awareness Ribbon Icon -->
+                                <svg class="w-7 h-9" viewBox="0 0 64 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M32 6 C14 6, 8 22, 16 38 L46 88 L56 76 L27 32 C22 23, 25 16, 32 16 Z" fill="#22E5F2" />
+                                    <path d="M32 6 C50 6, 56 22, 48 38 L18 88 L8 76 L37 32 C42 23, 39 16, 32 16 Z" fill="#B794F4" />
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <span class="font-serif text-2xl sm:text-[1.65rem] text-white group-hover:text-turquoise transition-colors duration-300 block">
+                                    Suicide Awareness
+                                </span>
+                                <p class="text-sm sm:text-base text-gray-400 font-light mt-1 leading-relaxed">
+                                    Compassionate awareness, supportive information, and reminders that no one fights alone.
+                                </p>
+                            </div>
+                            <span class="hidden sm:flex items-center gap-1.5 text-turquoise/40 group-hover:text-turquoise/80 transition-colors" aria-hidden="true">
+                                <span class="w-8 h-[1px] bg-current"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                            </span>
+                        </li>
+
+                        <!-- Topic 2: Depression & Anxiety -->
+                        <li class="py-6 sm:py-7 flex items-start sm:items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-lavender/15 via-navy/80 to-turquoise/10 border border-lavender/35 shadow-[0_0_24px_rgba(183,148,244,0.14)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 group-hover:border-lavender/60 transition-all duration-300">
+                                <i class="ph-light ph-cloud-sun text-3xl text-lavender"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <span class="font-serif text-2xl sm:text-[1.65rem] text-white group-hover:text-lavender transition-colors duration-300 block">
+                                    Depression &amp; Anxiety
+                                </span>
+                                <p class="text-sm sm:text-base text-gray-400 font-light mt-1 leading-relaxed">
+                                    Grounding perspectives and steady everyday practices for navigating heavy or anxious seasons.
+                                </p>
+                            </div>
+                            <span class="hidden sm:flex items-center gap-1.5 text-lavender/40 group-hover:text-lavender/80 transition-colors" aria-hidden="true">
+                                <span class="w-8 h-[1px] bg-current"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                            </span>
+                        </li>
+
+                        <!-- Topic 3: Grief & Loss -->
+                        <li class="py-6 sm:py-7 flex items-start sm:items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-sunset/15 via-navy/80 to-lavender/10 border border-sunset/35 shadow-[0_0_24px_rgba(255,138,91,0.14)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 group-hover:border-sunset/60 transition-all duration-300">
+                                <i class="ph-light ph-heart text-3xl text-sunset"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <span class="font-serif text-2xl sm:text-[1.65rem] text-white group-hover:text-sunset transition-colors duration-300 block">
+                                    Grief &amp; Loss
+                                </span>
+                                <p class="text-sm sm:text-base text-gray-400 font-light mt-1 leading-relaxed">
+                                    Gentle reflections for honoring loss and moving forward at your own pace.
+                                </p>
+                            </div>
+                            <span class="hidden sm:flex items-center gap-1.5 text-sunset/40 group-hover:text-sunset/80 transition-colors" aria-hidden="true">
+                                <span class="w-8 h-[1px] bg-current"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                            </span>
+                        </li>
+
+                        <!-- Topic 4: Worksheets -->
+                        <li class="py-6 sm:py-7 flex items-start sm:items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-turquoise/15 via-navy/80 to-sunset/10 border border-turquoise/35 shadow-[0_0_24px_rgba(0,229,255,0.12)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 group-hover:border-turquoise/60 transition-all duration-300">
+                                <i class="ph-light ph-notebook text-3xl text-turquoise"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <span class="font-serif text-2xl sm:text-[1.65rem] text-white group-hover:text-turquoise transition-colors duration-300 block">
+                                    Worksheets
+                                </span>
+                                <p class="text-sm sm:text-base text-gray-400 font-light mt-1 leading-relaxed">
+                                    Practical reflection exercises designed to clarify priorities and support personal growth.
+                                </p>
+                            </div>
+                            <span class="hidden sm:flex items-center gap-1.5 text-turquoise/40 group-hover:text-turquoise/80 transition-colors" aria-hidden="true">
+                                <span class="w-8 h-[1px] bg-current"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                            </span>
+                        </li>
+
+                    </ul>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- COACHING PHILOSOPHY SECTION -->
-    <section id="coaching" class="py-32 bg-[#081028] relative overflow-hidden border-y border-white/5">
+    <!-- 2. COACHING GOALS SECTION -->
+    <section id="coaching" class="py-28 lg:py-32 bg-[#081028] relative overflow-hidden border-y border-white/5">
         <!-- Subtle Ambient Glow Behind Arch -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[320px] bg-lavender/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
             <div class="flex items-center gap-4 mb-20 reveal">
-                <h2 class="font-serif text-4xl md:text-5xl font-medium text-white">The Coaching Philosophy</h2>
+                <h2 class="font-serif text-4xl md:text-5xl font-medium text-white">Coaching Goals</h2>
                 <div class="h-[1px] flex-1 bg-gradient-to-r from-white/20 to-transparent"></div>
             </div>
 
@@ -778,10 +998,120 @@
         </div>
     </section>
 
-    <!-- SESSION RATES SECTION -->
-    <section class="py-32 bg-midnight relative z-10 text-center">
+    <!-- 3. MEET MICHAEL SECTION -->
+    <section id="meet-michael" class="bg-midnight py-28 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row gap-20 items-center">
+                
+                <!-- Photographic Composition -->
+                <div class="w-full lg:w-1/2 relative reveal">
+                    <div class="aspect-[4/5] rounded-t-full rounded-b-2xl overflow-hidden img-editorial border border-white/10 relative z-10">
+                        <img src="https://raw.githubusercontent.com/CreativeTugsDotCom/KMM/refs/heads/main/d04f8627-9a09-4113-bd3a-7a06177cc339.webp" alt="Michael Wiegand - Professional Life Coach" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Organic background accent -->
+                    <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-turquoise/5 rounded-full blur-3xl z-0"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="w-full lg:w-1/2 reveal" style="transition-delay: 200ms;">
+                    <span class="text-xs font-sans font-semibold tracking-[0.26em] uppercase text-lavender/90 block mb-3">Meet Michael</span>
+                    <h2 class="font-serif text-4xl lg:text-6xl font-medium mb-4 text-white">Michael Wiegand</h2>
+                    <p class="text-turquoise text-xl font-light italic mb-10 pb-6 border-b border-white/10 inline-block w-full">I am a life coach, not a therapist.</p>
+                    
+                    <div class="space-y-6 text-gray-300 font-light text-lg leading-relaxed mb-10">
+                        <p>
+                            Dedicated to providing a supportive, understanding environment to help you overcome personal obstacles. 
+                            My approach focuses on empathy, resilience, and identifying actionable paths forward.
+                        </p>
+                        <p>
+                            I am a life coach, not a therapist. I am here to help you establish your goals, regain focus, and build the confidence necessary to navigate your unique journey.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FREE CONSULTATION SECTION -->
+    <section id="contact" class="py-32 lg:py-40 relative overflow-hidden bg-[#081028] border-y border-white/5">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1471922614654-6825aca59ca2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Ocean horizon" class="w-full h-full object-cover opacity-[0.15] object-bottom mix-blend-luminosity">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#081028] via-[#081028]/80 to-[#081028]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-3xl mx-auto px-6 text-center reveal">
+            <span class="text-xs font-sans font-semibold tracking-[0.28em] uppercase text-turquoise/90 block mb-4">Free Consultation</span>
+            <h2 class="font-serif text-5xl md:text-7xl font-medium text-white mb-8">Let's talk.</h2>
+            <p class="text-xl text-gray-300 font-light mb-10">
+                Ready to take the next step? Reach out to schedule your free consultation or ask any questions you might have.
+            </p>
+
+            <!-- Creative Action Button -->
+            <div class="mb-12">
+                <a href="#contact" class="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full btn-turquoise text-white font-serif text-lg tracking-wide transition-all duration-300 overflow-hidden">
+                    <span class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                    <i class="ph ph-calendar-check text-2xl relative z-10"></i>
+                    <span class="relative z-10 font-medium">Schedule Your Free Session</span>
+                    <i class="ph ph-arrow-right text-base relative z-10 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="inline-block border border-white/10 bg-white/5 rounded-full px-8 py-4 backdrop-blur-md mt-2">
+                <p class="text-gray-300 italic text-sm md:text-base tracking-wide">
+                    Professional Life Coach
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BEFORE YOU BOOK SECTION -->
+    <section id="before-book" class="py-24 lg:py-32 bg-navy border-b border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                <!-- Left Editorial Heading -->
+                <div class="lg:col-span-5 reveal">
+                    <span class="text-xs font-sans font-semibold tracking-[0.26em] uppercase text-lavender/90 block mb-4">Preparation</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-medium text-white mb-6">Before You Book</h2>
+                    <div class="h-[1px] w-24 bg-gradient-to-r from-lavender/70 to-transparent mb-6"></div>
+                    <p class="text-gray-300 font-light text-base sm:text-lg leading-relaxed max-w-md">
+                        Everything you need to know ahead of your first session so you can begin with clarity and peace of mind.
+                    </p>
+                </div>
+
+                <!-- Right Editorial List -->
+                <div class="lg:col-span-7 reveal" style="transition-delay: 150ms;">
+                    <ul class="space-y-1 sm:space-y-2 border-t border-white/10">
+                        <li class="py-4 sm:py-5 lg:py-6 border-b border-white/10 flex items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-turquoise/80 flex-shrink-0 group-hover:bg-white/10 group-hover:text-turquoise transition-colors duration-300">
+                                <i class="ph-light ph-scroll text-xl"></i>
+                            </div>
+                            <span class="font-serif text-xl sm:text-2xl text-gray-200 flex-1 group-hover:text-white transition-colors duration-300">Coaching Agreement</span>
+                        </li>
+                        <li class="py-4 sm:py-5 lg:py-6 border-b border-white/10 flex items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-lavender/80 flex-shrink-0 group-hover:bg-white/10 group-hover:text-lavender transition-colors duration-300">
+                                <i class="ph-light ph-video-camera text-xl"></i>
+                            </div>
+                            <span class="font-serif text-xl sm:text-2xl text-gray-200 flex-1 group-hover:text-white transition-colors duration-300">Video Sessions</span>
+                        </li>
+                        <li class="py-4 sm:py-5 lg:py-6 border-b border-white/10 flex items-center gap-5 sm:gap-6 group transition-all duration-300">
+                            <div class="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-sunset/80 flex-shrink-0 group-hover:bg-white/10 group-hover:text-sunset transition-colors duration-300">
+                                <i class="ph-light ph-credit-card text-xl"></i>
+                            </div>
+                            <span class="font-serif text-xl sm:text-2xl text-gray-200 flex-1 group-hover:text-white transition-colors duration-300">Payment Options</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SESSION RATES SECTION -->
+    <section id="session-rates" class="py-28 lg:py-32 bg-midnight relative z-10 text-center">
         <div class="max-w-4xl mx-auto px-6 reveal">
-            <h2 class="font-serif text-4xl text-white mb-2">Session Rates</h2>
+            <h2 class="font-serif text-4xl lg:text-5xl text-white mb-3">Session Rates</h2>
             <p class="text-gray-400 font-light mb-16">Clear, transparent pricing to support your journey.</p>
             
             <div class="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32 mb-16">
@@ -812,93 +1142,6 @@
             <div class="inline-block relative">
                 <p class="relative text-gray-400 font-serif italic text-xl border-t border-b border-white/10 py-4 px-12">
                     Payment plans available.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- RESOURCES & BEFORE YOU BOOK (Editorial Layout) -->
-    <section id="resources" class="py-16 md:py-24 lg:py-32 bg-navy border-t border-white/5 relative">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
-                
-                <!-- Resources List -->
-                <div class="reveal">
-                    <div class="flex items-center gap-4 mb-6 md:mb-10 lg:mb-12">
-                        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-white whitespace-nowrap">Resources</h2>
-                        <div class="h-[1px] flex-1 bg-gradient-to-r from-white/20 to-transparent"></div>
-                    </div>
-                    
-                    <ul class="space-y-1 sm:space-y-2">
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center justify-between group transition-all duration-300">
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 group-hover:text-white transition-colors duration-300">Suicide Awareness</span>
-                            <i class="ph-light ph-arrow-right text-lg sm:text-xl lg:text-2xl text-white/20 group-hover:translate-x-1 group-hover:text-turquoise transition-all duration-300"></i>
-                        </li>
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center justify-between group transition-all duration-300">
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 group-hover:text-white transition-colors duration-300">Depression & Anxiety</span>
-                            <i class="ph-light ph-arrow-right text-lg sm:text-xl lg:text-2xl text-white/20 group-hover:translate-x-1 group-hover:text-turquoise transition-all duration-300"></i>
-                        </li>
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center justify-between group transition-all duration-300">
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 group-hover:text-white transition-colors duration-300">Grief & Loss</span>
-                            <i class="ph-light ph-arrow-right text-lg sm:text-xl lg:text-2xl text-white/20 group-hover:translate-x-1 group-hover:text-turquoise transition-all duration-300"></i>
-                        </li>
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center justify-between group transition-all duration-300">
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 group-hover:text-white transition-colors duration-300">Worksheets</span>
-                            <i class="ph-light ph-arrow-right text-lg sm:text-xl lg:text-2xl text-white/20 group-hover:translate-x-1 group-hover:text-turquoise transition-all duration-300"></i>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Before You Book List -->
-                <div id="before-book" class="reveal" style="transition-delay: 200ms;">
-                    <div class="flex items-center gap-4 mb-6 md:mb-10 lg:mb-12">
-                        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-white whitespace-nowrap">Before You Book</h2>
-                        <div class="h-[1px] flex-1 bg-gradient-to-r from-white/20 to-transparent"></div>
-                    </div>
-                    
-                    <ul class="space-y-1 sm:space-y-2">
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center gap-4 sm:gap-5 lg:gap-6 group transition-all duration-300">
-                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 flex-shrink-0 group-hover:bg-white/10 group-hover:text-white transition-colors duration-300">
-                                <i class="ph-light ph-scroll text-base sm:text-lg lg:text-xl"></i>
-                            </div>
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 flex-1 group-hover:text-white transition-colors duration-300">Coaching Agreement</span>
-                        </li>
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center gap-4 sm:gap-5 lg:gap-6 group transition-all duration-300">
-                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 flex-shrink-0 group-hover:bg-white/10 group-hover:text-white transition-colors duration-300">
-                                <i class="ph-light ph-video-camera text-base sm:text-lg lg:text-xl"></i>
-                            </div>
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 flex-1 group-hover:text-white transition-colors duration-300">Video Sessions</span>
-                        </li>
-                        <li class="py-3 sm:py-4 lg:py-6 border-b border-white/10 flex items-center gap-4 sm:gap-5 lg:gap-6 group transition-all duration-300">
-                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 flex-shrink-0 group-hover:bg-white/10 group-hover:text-white transition-colors duration-300">
-                                <i class="ph-light ph-credit-card text-base sm:text-lg lg:text-xl"></i>
-                            </div>
-                            <span class="font-serif text-lg sm:text-xl lg:text-2xl text-gray-300 flex-1 group-hover:text-white transition-colors duration-300">Payment Options</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CONSULTATION / CONTACT SECTION -->
-    <section id="contact" class="py-40 relative overflow-hidden bg-midnight">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1471922614654-6825aca59ca2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Ocean horizon" class="w-full h-full object-cover opacity-[0.15] object-bottom mix-blend-luminosity">
-            <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/80 to-midnight"></div>
-        </div>
-
-        <div class="relative z-10 max-w-3xl mx-auto px-6 text-center reveal">
-            <h2 class="font-serif text-5xl md:text-7xl font-medium text-white mb-8">Let's talk.</h2>
-            <p class="text-xl text-gray-300 font-light mb-12">
-                Ready to take the next step? Reach out to schedule your free consultation or ask any questions you might have.
-            </p>
-
-            <div class="inline-block border border-white/10 bg-white/5 rounded-full px-8 py-4 backdrop-blur-md mt-4">
-                <p class="text-gray-300 italic text-sm md:text-base tracking-wide">
-                    I am a life coach, not a therapist.
                 </p>
             </div>
         </div>
